@@ -59,14 +59,16 @@ const sections = [
     <!-- ============ HERO ============ -->
     <section
       id="hero"
-      class="border-border flex min-h-[70vh] flex-col justify-center border-b pt-8 pb-16"
+      class="border-border relative flex min-h-[80vh] flex-col justify-center border-b pt-8 pb-16"
     >
       <p class="text-accent mb-3 text-lg font-medium">Hi, my name is</p>
-      <h1 class="mb-2 text-5xl font-bold tracking-tight sm:text-7xl">
+      <h1
+        class="mb-2 text-5xl leading-tight font-bold tracking-tight sm:text-7xl"
+      >
         ImMayank
       </h1>
       <h2
-        class="text-foreground/60 mb-6 text-3xl font-bold tracking-tight sm:text-5xl"
+        class="text-foreground/60 mb-6 text-3xl leading-tight font-bold tracking-tight sm:text-5xl"
       >
         I build <span class="text-accent">TestWithAI</span>.
       </h2>
@@ -94,7 +96,7 @@ const sections = [
       <div class="mt-10 flex flex-wrap gap-3">
         <a
           href="#sections"
-          class="border-accent bg-accent text-background hover:bg-accent/90 rounded-md border px-6 py-3 font-medium transition-colors"
+          class="border-accent bg-accent text-background hover:bg-accent/90 rounded-md border px-6 py-3 font-medium shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
         >
           Explore My Work
         </a>
@@ -105,50 +107,92 @@ const sections = [
           Get in touch
         </a>
       </div>
+
+      <a
+        href="#whoami"
+        aria-label="Scroll to Who am I"
+        class="text-foreground/40 hover:text-accent absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce transition-colors"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="28"
+          height="28"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M12 5v14M19 12l-7 7-7-7"></path>
+        </svg>
+      </a>
     </section>
 
     <!-- ============ WHO AM I ============ -->
     <section id="whoami" class="border-border border-b py-16">
-      <h2 class="mb-6 text-3xl font-bold tracking-wide">Who am I?</h2>
-      <div class="grid gap-8 md:grid-cols-[2fr_1fr]">
-        <div class="text-foreground/85 space-y-4 text-base leading-relaxed">
-          <p>
-            I'm <strong>Mayank</strong> — a Software Development Engineer in
-            Test (SDET) passionate about building automation frameworks,
-            open-source developer tools, and sharing knowledge with the QA
-            community.
-          </p>
-          <p>
-            Through <strong>TestWithAI</strong>, I curate and publish battle-tested
-            automation frameworks, free developer resources, and interview prep
-            content designed to help engineers grow faster.
-          </p>
-          <p>
-            When I'm not writing tests, I'm writing about how to write better
-            tests. Explore the sections below to see what I've built.
-          </p>
+      <h2
+        class="mb-8 inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:bg-accent after:content-['']"
+      >
+        Who am I?
+      </h2>
+      <div class="grid gap-8 md:grid-cols-[1fr_2fr] md:items-start">
+        <div class="relative">
+          <img
+            src={`${import.meta.env.BASE_URL}mayank-hero.png`}
+            alt="Mayank Gupta"
+            width="600"
+            height="800"
+            loading="lazy"
+            class="border-border w-full rounded-lg border object-cover shadow-lg"
+          />
         </div>
-        <div
-          class="border-border bg-muted/30 flex flex-col justify-center rounded-lg border p-6"
-        >
-          <div class="mb-3 text-sm font-semibold tracking-wide uppercase">
-            Skills
+        <div class="space-y-4">
+          <div
+            class="text-foreground/85 space-y-4 text-base leading-relaxed"
+          >
+            <p>
+              I'm <strong>Mayank</strong> — a Software Development Engineer in
+              Test (SDET) passionate about building automation frameworks,
+              open-source developer tools, and sharing knowledge with the QA
+              community.
+            </p>
+            <p>
+              Through <strong>TestWithAI</strong>, I curate and publish battle-tested
+              automation frameworks, free developer resources, and interview prep
+              content designed to help engineers grow faster.
+            </p>
+            <p>
+              When I'm not writing tests, I'm writing about how to write better
+              tests. Explore the sections below to see what I've built.
+            </p>
           </div>
-          <ul class="space-y-1.5 text-sm">
-            <li>▸ Playwright / Cypress / Selenium</li>
-            <li>▸ REST & GraphQL API Testing</li>
-            <li>▸ CI/CD (GitHub Actions, Jenkins)</li>
-            <li>▸ JavaScript / TypeScript / Python</li>
-            <li>▸ Docker & Cloud Testing Grids</li>
-          </ul>
+          <div
+            class="border-border bg-muted/30 mt-6 rounded-lg border p-6"
+          >
+            <div class="mb-3 text-sm font-semibold tracking-wide uppercase">
+              Skills
+            </div>
+            <ul class="grid gap-1.5 text-sm sm:grid-cols-2">
+              <li>▸ Playwright / Cypress / Selenium</li>
+              <li>▸ REST & GraphQL API Testing</li>
+              <li>▸ CI/CD (GitHub Actions, Jenkins)</li>
+              <li>▸ JavaScript / TypeScript / Python</li>
+              <li>▸ Docker & Cloud Testing Grids</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ============ WHAT I DO / 3 SECTIONS ============ -->
     <section id="sections" class="border-border border-b py-16">
-      <h2 class="mb-2 text-3xl font-bold tracking-wide">What I Do</h2>
-      <p class="text-foreground/70 mb-8">
+      <h2
+        class="mb-2 inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:bg-accent after:content-['']"
+      >
+        What I Do
+      </h2>
+      <p class="text-foreground/70 mt-4 mb-8">
         Three focused pillars under the TestWithAI umbrella.
       </p>
       <div class="grid gap-6 md:grid-cols-3">
@@ -160,8 +204,10 @@ const sections = [
     {
       recentPosts.length > 0 && (
         <section id="blog" class="border-border border-b py-16">
-          <h2 class="mb-2 text-3xl font-bold tracking-wide">Latest Posts</h2>
-          <p class="text-foreground/70 mb-6">
+          <h2 class="mb-2 inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:bg-accent after:content-['']">
+            Latest Posts
+          </h2>
+          <p class="text-foreground/70 mt-4 mb-6">
             Interview questions, framework tutorials, and QA insights.
           </p>
           <ul>
@@ -181,8 +227,12 @@ const sections = [
 
     <!-- ============ CONTACT ============ -->
     <section id="contact" class="py-16">
-      <h2 class="mb-2 text-3xl font-bold tracking-wide">Let's connect</h2>
-      <p class="text-foreground/80 mb-6 max-w-2xl text-base leading-relaxed">
+      <h2
+        class="mb-2 inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:bg-accent after:content-['']"
+      >
+        Let's connect
+      </h2>
+      <p class="text-foreground/80 mt-4 mb-6 max-w-2xl text-base leading-relaxed">
         Have an idea, opportunity, or want to collaborate on an open-source
         testing project? I'd love to hear from you.
       </p>
