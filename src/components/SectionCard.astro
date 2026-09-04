@@ -1,0 +1,39 @@
+---
+type Props = {
+  href: string;
+  title: string;
+  tagline: string;
+  emoji: string;
+  items: string[];
+};
+
+const { href, title, tagline, emoji, items } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group border-border hover:border-accent hover:bg-accent/5 flex flex-col rounded-lg border p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
+>
+  <div class="mb-3 text-4xl">{emoji}</div>
+  <h3
+    class="group-hover:text-accent mb-1 text-xl font-bold tracking-wide transition-colors"
+  >
+    {title}
+  </h3>
+  <p class="text-foreground/70 mb-4 text-sm">{tagline}</p>
+  <ul class="mt-auto space-y-1 text-sm">
+    {
+      items.map(item => (
+        <li class="text-foreground/80 flex items-center gap-2">
+          <span class="text-accent">▸</span>
+          {item}
+        </li>
+      ))
+    }
+  </ul>
+  <div
+    class="text-accent mt-4 text-sm font-medium opacity-0 transition-opacity group-hover:opacity-100"
+  >
+    Explore →
+  </div>
+</a>

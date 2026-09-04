@@ -1,0 +1,70 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/components/Main.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Datetime from "@/components/Datetime.astro";
+
+export const getStaticPaths = (async () => {
+  const entries = await getCollection(
+    "resources",
+    ({ data }) => !data.draft
+  );
+  return entries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout
+  title={`${entry.data.title} | Resources`}
+  description={entry.data.description}
+>
+  <Header />
+  <Breadcrumb />
+  <Main
+    pageTitle={entry.data.title}
+    pageDesc={entry.data.description}
+  >
+    <Datetime
+      pubDatetime={entry.data.pubDatetime}
+      modDatetime={entry.data.updatedDatetime ?? null}
+    />
+    {
+      entry.data.tags.length > 0 && (
+        <ul class="mt-4 flex flex-wrap gap-2">
+          {entry.data.tags.map(tag => (
+            <li class="border-border text-foreground/70 rounded border px-2 py-0.5 text-xs">
+              #{tag}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+    {
+      entry.data.externalUrl && (
+        <p class="mt-4">
+          <a
+            href={entry.data.externalUrl}
+            target="_blank"
+            rel="noopener"
+            class="text-accent decoration-dashed underline-offset-4 hover:underline"
+          >
+            Visit resource →
+          </a>
+        </p>
+      )
+    }
+    <article class="app-prose mt-8">
+      <Content />
+    </article>
+  </Main>
+  <Footer />
+</Layout>

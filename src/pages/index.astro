@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import IconRss from "@/assets/icons/IconRss.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
@@ -9,6 +8,7 @@ import Footer from "@/components/Footer.astro";
 import Socials from "@/components/Socials.astro";
 import Card from "@/components/Card.astro";
 import LinkButton from "@/components/LinkButton.astro";
+import SectionCard from "@/components/SectionCard.astro";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
@@ -20,9 +20,32 @@ const t = useTranslations(locale);
 
 const posts = await getCollection("posts");
 const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+const recentPosts = sortedPosts.slice(0, postsConfig.perIndex);
 const homePath = getRelativeLocaleUrl(locale, "");
+
+const sections = [
+  {
+    href: getRelativeLocaleUrl(locale, "automation"),
+    title: "Automation",
+    tagline: "Frameworks & test engineering",
+    emoji: "🤖",
+    items: ["Playwright", "Selenium", "API Testing", "CI/CD Pipelines"],
+  },
+  {
+    href: getRelativeLocaleUrl(locale, "resources"),
+    title: "Resources",
+    tagline: "Free tools for developers & QA",
+    emoji: "📚",
+    items: ["APIs", "AI APIs", "Datasets", "Tools"],
+  },
+  {
+    href: getRelativeLocaleUrl(locale, "interview"),
+    title: "Interview",
+    tagline: "Questions, answers & practice",
+    emoji: "💡",
+    items: ["Questions", "Answers", "Practice", "System Design"],
+  },
+];
 ---
 
 <Layout>
@@ -33,44 +56,33 @@ const homePath = getRelativeLocaleUrl(locale, "");
     data-home-path={homePath}
     class="app-layout my-1"
   >
-    <section id="hero" class="border-border border-b pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Mingalaba
+    <!-- ============ HERO ============ -->
+    <section
+      id="hero"
+      class="border-border flex min-h-[70vh] flex-col justify-center border-b pt-8 pb-16"
+    >
+      <p class="text-accent mb-3 text-lg font-medium">Hi, my name is</p>
+      <h1 class="mb-2 text-5xl font-bold tracking-tight sm:text-7xl">
+        ImMayank
       </h1>
-      <a
-        target="_blank"
-        href={`${import.meta.env.BASE_URL.replace(/\/?$/, "/")}rss.xml`}
-        class="inline-block"
-        aria-label="RSS Feed"
-        title="RSS Feed"
+      <h2
+        class="text-foreground/60 mb-6 text-3xl font-bold tracking-tight sm:text-5xl"
       >
-        <IconRss
-          width={20}
-          height={20}
-          class="stroke-accent scale-125 stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
+        I build <span class="text-accent">TestWithAI</span>.
+      </h2>
+      <p class="text-foreground/80 max-w-2xl text-lg leading-relaxed">
+        SDET / Automation Engineer building open-source frameworks, developer
+        resources, and interview prep — all under the
+        <a
+          href="https://github.com/TestWithAI"
+          class="text-accent underline decoration-dashed underline-offset-4 hover:no-underline"
+          target="_blank">TestWithAI</a
+        > organization.
+      </p>
 
-      <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
-      </p>
-      <p class="mt-2">
-        Read the blog posts or check{" "}
-        <LinkButton
-          class="hover:text-accent underline decoration-dashed underline-offset-4"
-          href="https://github.com/satnaing/astro-paper#readme"
-        >
-          README
-        </LinkButton>{" "}
-        for more info.
-      </p>
       {
         socials.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
+          <div class="mt-8 flex max-sm:flex-col sm:items-center">
             <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
               {t.home.socialLinks}:
             </div>
@@ -78,50 +90,104 @@ const homePath = getRelativeLocaleUrl(locale, "");
           </div>
         )
       }
+
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a
+          href="#sections"
+          class="border-accent bg-accent text-background hover:bg-accent/90 rounded-md border px-6 py-3 font-medium transition-colors"
+        >
+          Explore My Work
+        </a>
+        <a
+          href="#contact"
+          class="border-border hover:border-accent hover:text-accent rounded-md border px-6 py-3 font-medium transition-colors"
+        >
+          Get in touch
+        </a>
+      </div>
     </section>
 
-    {
-      featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-border border-b": recentPosts.length > 0 },
-          ]}
+    <!-- ============ WHO AM I ============ -->
+    <section id="whoami" class="border-border border-b py-16">
+      <h2 class="mb-6 text-3xl font-bold tracking-wide">Who am I?</h2>
+      <div class="grid gap-8 md:grid-cols-[2fr_1fr]">
+        <div class="text-foreground/85 space-y-4 text-base leading-relaxed">
+          <p>
+            I'm <strong>Mayank</strong> — a Software Development Engineer in
+            Test (SDET) passionate about building automation frameworks,
+            open-source developer tools, and sharing knowledge with the QA
+            community.
+          </p>
+          <p>
+            Through <strong>TestWithAI</strong>, I curate and publish battle-tested
+            automation frameworks, free developer resources, and interview prep
+            content designed to help engineers grow faster.
+          </p>
+          <p>
+            When I'm not writing tests, I'm writing about how to write better
+            tests. Explore the sections below to see what I've built.
+          </p>
+        </div>
+        <div
+          class="border-border bg-muted/30 flex flex-col justify-center rounded-lg border p-6"
         >
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.featured}
-          </h2>
-          <ul>
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
+          <div class="mb-3 text-sm font-semibold tracking-wide uppercase">
+            Skills
+          </div>
+          <ul class="space-y-1.5 text-sm">
+            <li>▸ Playwright / Cypress / Selenium</li>
+            <li>▸ REST & GraphQL API Testing</li>
+            <li>▸ CI/CD (GitHub Actions, Jenkins)</li>
+            <li>▸ JavaScript / TypeScript / Python</li>
+            <li>▸ Docker & Cloud Testing Grids</li>
           </ul>
-        </section>
-      )
-    }
+        </div>
+      </div>
+    </section>
 
+    <!-- ============ WHAT I DO / 3 SECTIONS ============ -->
+    <section id="sections" class="border-border border-b py-16">
+      <h2 class="mb-2 text-3xl font-bold tracking-wide">What I Do</h2>
+      <p class="text-foreground/70 mb-8">
+        Three focused pillars under the TestWithAI umbrella.
+      </p>
+      <div class="grid gap-6 md:grid-cols-3">
+        {sections.map(s => <SectionCard {...s} />)}
+      </div>
+    </section>
+
+    <!-- ============ BLOG ============ -->
     {
       recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.recentPosts}
-          </h2>
+        <section id="blog" class="border-border border-b py-16">
+          <h2 class="mb-2 text-3xl font-bold tracking-wide">Latest Posts</h2>
+          <p class="text-foreground/70 mb-6">
+            Interview questions, framework tutorials, and QA insights.
+          </p>
           <ul>
-            {recentPosts.slice(0, postsConfig.perIndex).map(data => (
+            {recentPosts.map(data => (
               <Card variant="h3" {...data} />
             ))}
           </ul>
+          <div class="mt-8 text-center">
+            <LinkButton href={getRelativeLocaleUrl(locale, "posts")}>
+              {t.home.allPosts}
+              <IconArrowRight class="inline-block rtl:-rotate-180" />
+            </LinkButton>
+          </div>
         </section>
       )
     }
 
-    <div class="my-8 text-center">
-      <LinkButton href={getRelativeLocaleUrl(locale, "posts")}>
-        {t.home.allPosts}
-        <IconArrowRight class="inline-block rtl:-rotate-180" />
-      </LinkButton>
-    </div>
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="py-16">
+      <h2 class="mb-2 text-3xl font-bold tracking-wide">Let's connect</h2>
+      <p class="text-foreground/80 mb-6 max-w-2xl text-base leading-relaxed">
+        Have an idea, opportunity, or want to collaborate on an open-source
+        testing project? I'd love to hear from you.
+      </p>
+      {socials.length > 0 && <Socials />}
+    </section>
   </main>
   <Footer />
 </Layout>
