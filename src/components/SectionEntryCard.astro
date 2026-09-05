@@ -8,7 +8,6 @@ type Props = {
   pubDatetime: Date;
   updatedDatetime?: Date;
   tags?: string[];
-  externalUrl?: string;
 };
 
 const {
@@ -18,7 +17,6 @@ const {
   pubDatetime,
   updatedDatetime,
   tags = [],
-  externalUrl,
 } = Astro.props;
 ---
 
@@ -40,20 +38,6 @@ const {
           </li>
         ))}
       </ul>
-    )
-  }
-  {
-    externalUrl && (
-      <p class="mt-2 text-sm">
-        <a
-          href={externalUrl}
-          target="_blank"
-          rel="noopener"
-          class="text-accent decoration-dashed underline-offset-4 hover:underline"
-        >
-          Open external →
-        </a>
-      </p>
     )
   }
 </li>

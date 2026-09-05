@@ -33,22 +33,24 @@ const { Content } = await render(entry);
     pageTitle={entry.data.title}
     pageDesc={entry.data.description}
   >
-    <Datetime
-      pubDatetime={entry.data.pubDatetime}
-      modDatetime={entry.data.updatedDatetime ?? null}
-    />
+    <div class="mb-8 flex items-center gap-4 text-sm text-foreground/70">
+      <Datetime
+        pubDatetime={entry.data.pubDatetime}
+        modDatetime={entry.data.updatedDatetime ?? null}
+      />
+    </div>
     {
       entry.data.tags.length > 0 && (
-        <ul class="mt-4 flex flex-wrap gap-2">
+        <div class="mb-8 flex flex-wrap gap-2">
           {entry.data.tags.map(tag => (
-            <li class="border-border text-foreground/70 rounded border px-2 py-0.5 text-xs">
+            <span class="border-border text-foreground/60 rounded border px-3 py-1 text-sm">
               #{tag}
-            </li>
+            </span>
           ))}
-        </ul>
+        </div>
       )
     }
-    <article class="app-prose mt-8">
+    <article class="app-prose">
       <Content />
     </article>
   </Main>

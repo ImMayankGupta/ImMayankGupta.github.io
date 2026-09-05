@@ -3,7 +3,20 @@
 @layer base {
   /* ===== Override default Tailwind Typography styles ===== */
   .app-prose {
-    @apply prose;
+    @apply prose max-w-none prose-sm sm:prose-base;
+    @apply prose-headings:text-foreground prose-h1:text-4xl sm:prose-h1:text-5xl;
+    @apply prose-h2:text-3xl sm:prose-h2:text-4xl;
+    @apply prose-h3:text-2xl sm:prose-h3:text-3xl;
+    @apply prose-p:text-foreground prose-p:leading-7 sm:prose-p:leading-8;
+    @apply prose-a:text-accent prose-a:underline prose-a:decoration-dashed prose-a:underline-offset-4;
+    @apply prose-strong:text-foreground prose-strong:font-bold;
+    @apply prose-code:text-foreground prose-code:bg-muted prose-code:px-2 prose-code:py-1 prose-code:rounded;
+    @apply prose-pre:bg-muted prose-pre:text-foreground;
+    @apply prose-blockquote:text-foreground prose-blockquote:border-l-4 prose-blockquote:border-accent;
+    @apply prose-ul:text-foreground prose-ol:text-foreground;
+    @apply prose-li:text-foreground prose-li:mb-2;
+    @apply prose-table:text-foreground;
+    @apply prose-img:rounded-lg prose-img:border prose-img:border-border;
 
     h1,
     h2,

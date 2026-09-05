@@ -1,37 +1,36 @@
 ---
 title: "About"
-description: "A bit about me and this blog."
+description: "About Mayank Gupta — SDET, automation engineer, and the person behind TestWithAI."
 ---
 
-AstroPaper is a minimal, accessible and SEO-friendly blog theme built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
+Hi, I'm **Mayank Gupta** — a Software Development Engineer in Test (SDET) with a passion for building automation frameworks, open-source developer tools, and sharing knowledge with the QA community.
 
-![Astro Paper](@/assets/images/astropaper-og.jpg)
+## What I do
 
-AstroPaper provides a solid foundation for blogs, or even portfolios\_ with full markdown support, built-in dark mode, and a clean layout that works out-of-the-box.
+I build and share three types of content under the **TestWithAI** umbrella:
 
-The blog posts in this theme also serve as guides, docs or example articles\_ making AstroPaper a flexible starting point for your next content-driven site.
+- 🤖 **[Automation](/automation/)** — production-ready test automation frameworks and patterns (Playwright, Cypress, Selenium, BDD)
+- 📚 **[Resources](/resources/)** — curated free APIs, AI tools, and developer utilities I actually use
+- 💡 **[Interview](/interview/)** — 25+ interview Q&A guides across Playwright, Cypress, Java, Python, SQL, REST API, Appium, JMeter, and more
 
-## Features
+## Skills
 
-AstroPaper comes with a set of useful features that make content publishing easy and effective:
+- **Test automation** — Playwright, Cypress, Selenium, Appium, WebdriverIO
+- **API testing** — REST-assured, Postman, Newman
+- **Performance** — JMeter, k6, Gatling
+- **Languages** — JavaScript, TypeScript, Java, Python
+- **CI/CD** — GitHub Actions, Jenkins, GitLab CI
+- **Cloud & infra** — Docker, BrowserStack, Sauce Labs
 
-- SEO-friendly
-- Fast performance
-- Light & dark mode
-- Highly customizable
-- Organizable blog posts
-- Responsive & accessible
-- Static search with [PageFind](https://pagefind.app/)
-- Automatic social image generation
+## Beyond the code
 
-and so much more.
+When I'm not writing tests, I'm writing about how to write better tests. I share my learnings on [Medium](https://qamayankgupta.medium.com) — much of the content here started life as a Medium post.
 
-## Show your support
+## Let's connect
 
-If you like [AstroPaper](https://github.com/satnaing/astro-paper), consider giving it a star ⭐️.
+- **GitHub** — [@ImMayankGupta](https://github.com/ImMayankGupta)
+- **LinkedIn** — [immayankgupta](https://www.linkedin.com/in/immayankgupta/)
+- **X / Twitter** — [@ImMayankGupta](https://x.com/ImMayankGupta)
+- **Medium** — [qamayankgupta](https://qamayankgupta.medium.com)
 
-Found a bug 🐛 or have an improvement ✨ in mind? Feel free to open an [issue](https://github.com/satnaing/astro-paper/issues), submit a [pull request](https://github.com/satnaing/astro-paper/pulls) or start a [discussion](https://github.com/satnaing/astro-paper/discussions).
-
-If you find this theme helpful, you can also [sponsor me on GitHub](https://github.com/sponsors/satnaing) or [buy me a coffee](https://buymeacoffee.com/satnaing) to show your support — every penny counts.
-
-Kyay zuu! 🙏🏼
+If you have an idea, opportunity, or want to collaborate on an open-source testing project, I'd love to hear from you.

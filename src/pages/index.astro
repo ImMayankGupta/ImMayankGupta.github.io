@@ -1,27 +1,36 @@
 ---
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
-import Card from "@/components/Card.astro";
-import LinkButton from "@/components/LinkButton.astro";
+// import Socials from "@/components/Socials.astro"; // To be added later
 import SectionCard from "@/components/SectionCard.astro";
-import { getSortedPosts } from "@/utils/getSortedPosts";
+import SectionCarousel from "@/components/SectionCarousel.astro";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
 
-const { socials, posts: postsConfig } = config;
+// const { socials } = config; // To be added later
 
 const locale = Astro.currentLocale ?? config.site.lang;
 const t = useTranslations(locale);
 
-const posts = await getCollection("posts");
-const sortedPosts = getSortedPosts(posts);
-const recentPosts = sortedPosts.slice(0, postsConfig.perIndex);
 const homePath = getRelativeLocaleUrl(locale, "");
+
+const [automation, resources, interview] = await Promise.all([
+  getCollection("automation", ({ data }) => !data.draft),
+  getCollection("resources", ({ data }) => !data.draft),
+  getCollection("interview", ({ data }) => !data.draft),
+]);
+
+const sortByDate = <T extends { data: { pubDatetime: Date } }>(list: T[]) =>
+  [...list].sort(
+    (a, b) => b.data.pubDatetime.getTime() - a.data.pubDatetime.getTime()
+  );
+
+const automationEntries = sortByDate(automation);
+const resourcesEntries = sortByDate(resources);
+const interviewEntries = sortByDate(interview);
 
 const sections = [
   {
@@ -59,53 +68,64 @@ const sections = [
     <!-- ============ HERO ============ -->
     <section
       id="hero"
-      class="border-border relative flex min-h-[80vh] flex-col justify-center border-b pt-8 pb-16"
+      class="border-border relative flex min-h-[80vh] flex-col justify-center gap-8 border-b pt-8 pb-16 lg:flex-row lg:items-center lg:gap-12"
     >
-      <p class="text-accent mb-3 text-lg font-medium">Hi, my name is</p>
-      <h1
-        class="mb-2 text-5xl leading-tight font-bold tracking-tight sm:text-7xl"
-      >
-        ImMayank
-      </h1>
-      <h2
-        class="text-foreground/60 mb-6 text-3xl leading-tight font-bold tracking-tight sm:text-5xl"
-      >
-        I build <span class="text-accent">TestWithAI</span>.
-      </h2>
-      <p class="text-foreground/80 max-w-2xl text-lg leading-relaxed">
-        SDET / Automation Engineer building open-source frameworks, developer
-        resources, and interview prep — all under the
-        <a
-          href="https://github.com/TestWithAI"
-          class="text-accent underline decoration-dashed underline-offset-4 hover:no-underline"
-          target="_blank">TestWithAI</a
-        > organization.
-      </p>
+      <div class="flex flex-col flex-1 lg:max-w-2xl">
+        <p class="text-accent mb-3 text-lg font-medium">Hi, My Name is</p>
+        <h1
+          class="mb-2 text-5xl leading-tight font-bold tracking-tight sm:text-7xl"
+        >
+          Mayank Gupta
+        </h1>
+        <h2
+          class="text-foreground/60 mb-6 text-3xl leading-tight font-bold tracking-tight sm:text-5xl"
+        >
+          I build <span class="text-accent">TestWithAI</span>.
+        </h2>
+        <p class="text-foreground/80 text-lg leading-relaxed">
+          QA Automation Architect turning quality engineering into scalable frameworks, AI-powered solutions, developer resources, and interview-ready knowledge — through   
+          <a
+            href="https://github.com/TestWithAI"
+            class="text-accent underline decoration-dashed underline-offset-4 hover:no-underline"
+            target="_blank">TestWithAI</a
+          > organization.
+        </p>
 
-      {
-        socials.length > 0 && (
-          <div class="mt-8 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
-              {t.home.socialLinks}:
+        {/* Social Links - To be added later
+          socials.length > 0 && (
+            <div class="mt-8 flex max-sm:flex-col sm:items-center">
+              <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
+                {t.home.socialLinks}:
+              </div>
+              <Socials />
             </div>
-            <Socials />
-          </div>
-        )
-      }
+          )
+        */}
 
-      <div class="mt-10 flex flex-wrap gap-3">
-        <a
-          href="#sections"
-          class="border-accent bg-accent text-background hover:bg-accent/90 rounded-md border px-6 py-3 font-medium shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
-        >
-          Explore My Work
-        </a>
-        <a
-          href="#contact"
-          class="border-border hover:border-accent hover:text-accent rounded-md border px-6 py-3 font-medium transition-colors"
-        >
-          Get in touch
-        </a>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a
+            href="#sections"
+            class="border-accent bg-accent text-background hover:bg-accent/90 rounded-md border px-6 py-3 font-medium shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+          >
+            Explore My Work
+          </a>
+          <a
+            href="#contact"
+            class="border-border hover:border-accent hover:text-accent rounded-md border px-6 py-3 font-medium transition-colors"
+          >
+            Get in touch
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Image -->
+      <div class="flex-1 flex items-center justify-center lg:justify-end">
+        <img
+          src="/mayank-logo.png"
+          alt="Mayank - SDET & Automation Engineer"
+          class="w-full max-w-sm object-cover float-animation"
+          loading="lazy"
+        />
       </div>
 
       <a
@@ -195,32 +215,69 @@ const sections = [
       <p class="text-foreground/70 mt-4 mb-8">
         Three focused pillars under the TestWithAI umbrella.
       </p>
+      {/* Section Cards - To be added later
       <div class="grid gap-6 md:grid-cols-3">
         {sections.map(s => <SectionCard {...s} />)}
       </div>
+      */}
     </section>
 
-    <!-- ============ BLOG ============ -->
+    <!-- ============ LATEST AUTOMATION ============ -->
     {
-      recentPosts.length > 0 && (
-        <section id="blog" class="border-border border-b py-16">
-          <h2 class="mb-2 inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:bg-accent after:content-['']">
-            Latest Posts
-          </h2>
-          <p class="text-foreground/70 mt-4 mb-6">
-            Interview questions, framework tutorials, and QA insights.
-          </p>
-          <ul>
-            {recentPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-          <div class="mt-8 text-center">
-            <LinkButton href={getRelativeLocaleUrl(locale, "posts")}>
-              {t.home.allPosts}
-              <IconArrowRight class="inline-block rtl:-rotate-180" />
-            </LinkButton>
+      automationEntries.length > 0 && (
+        <section id="latest-automation" class="border-border border-b py-16">
+          <div class="mb-6 flex flex-wrap items-baseline justify-between gap-3">
+            <h2 class="inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:bg-accent after:content-['']">
+              🤖 Latest QA Automation Frameworks
+            </h2>
+            <a
+              href={getRelativeLocaleUrl(locale, "automation")}
+              class="text-accent decoration-dashed underline-offset-4 hover:underline"
+            >
+              View all {automationEntries.length} →
+            </a>
           </div>
+          <SectionCarousel entries={automationEntries} section="automation" />
+        </section>
+      )
+    }
+
+    <!-- ============ LATEST INTERVIEW ============ -->
+    {
+      interviewEntries.length > 0 && (
+        <section id="latest-interview" class="border-border border-b py-16">
+          <div class="mb-6 flex flex-wrap items-baseline justify-between gap-3">
+            <h2 class="inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:bg-accent after:content-['']">
+              💡 Latest Interview Questions
+            </h2>
+            <a
+              href={getRelativeLocaleUrl(locale, "interview")}
+              class="text-accent decoration-dashed underline-offset-4 hover:underline"
+            >
+              View all {interviewEntries.length} →
+            </a>
+          </div>
+          <SectionCarousel entries={interviewEntries} section="interview" />
+        </section>
+      )
+    }
+
+    <!-- ============ LATEST RESOURCES ============ -->
+    {
+      resourcesEntries.length > 0 && (
+        <section id="latest-resources" class="border-border border-b py-16">
+          <div class="mb-6 flex flex-wrap items-baseline justify-between gap-3">
+            <h2 class="inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:bg-accent after:content-['']">
+              📚 Latest Open Source Resources
+            </h2>
+            <a
+              href={getRelativeLocaleUrl(locale, "resources")}
+              class="text-accent decoration-dashed underline-offset-4 hover:underline"
+            >
+              View all {resourcesEntries.length} →
+            </a>
+          </div>
+          <SectionCarousel entries={resourcesEntries} section="resources" />
         </section>
       )
     }
@@ -236,7 +293,9 @@ const sections = [
         Have an idea, opportunity, or want to collaborate on an open-source
         testing project? I'd love to hear from you.
       </p>
+      {/* Social Icons - To be added later
       {socials.length > 0 && <Socials />}
+      */}
     </section>
   </main>
   <Footer />
