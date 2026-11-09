@@ -88,6 +88,7 @@ featured: true
 ---
 
 ## 1. What is a Pod?
+
 ...
 ```
 
@@ -100,16 +101,16 @@ The site auto-generates:
 
 ### Frontmatter schema (all sections)
 
-| Field | Type | Required |
-|---|---|---|
-| `title` | string | ✅ |
-| `description` | string | ✅ |
-| `pubDatetime` | ISO date | ✅ |
-| `tags` | string[] | — (defaults to `[]`) |
-| `updatedDatetime` | ISO date | — |
-| `externalUrl` | URL | — |
-| `featured` | boolean | — |
-| `draft` | boolean | — (excludes from build if `true`) |
+| Field             | Type     | Required                          |
+| ----------------- | -------- | --------------------------------- |
+| `title`           | string   | ✅                                |
+| `description`     | string   | ✅                                |
+| `pubDatetime`     | ISO date | ✅                                |
+| `tags`            | string[] | — (defaults to `[]`)              |
+| `updatedDatetime` | ISO date | —                                 |
+| `externalUrl`     | URL      | —                                 |
+| `featured`        | boolean  | —                                 |
+| `draft`           | boolean  | — (excludes from build if `true`) |
 
 ## 🚢 Deployment
 
@@ -127,11 +128,11 @@ Typical deploy: **~2 minutes** end-to-end.
 
 Inspired by [satnaing.dev](https://satnaing.dev):
 
-| Token | Light | Dark |
-|---|---|---|
-| Background | `#F9FAFB` | `#1D2A35` |
-| Accent | `#007A7A` (Marrs Green) | `#05CE91` (Carri Green) |
-| Foreground | `#004D4D` | `#F9FAFB` |
+| Token      | Light                   | Dark                    |
+| ---------- | ----------------------- | ----------------------- |
+| Background | `#F9FAFB`               | `#1D2A35`               |
+| Accent     | `#007A7A` (Marrs Green) | `#05CE91` (Carri Green) |
+| Foreground | `#004D4D`               | `#F9FAFB`               |
 
 ## 🙌 Credits
 

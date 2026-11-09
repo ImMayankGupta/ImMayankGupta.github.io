@@ -30,9 +30,9 @@ pnpm test
 
 ### What's inside
 
-| Folder | Purpose |
-| ------ | ------- |
-| `tests/` | Test specs |
-| `pages/` | Page objects |
-| `fixtures/` | Custom test fixtures |
-| `.github/workflows/` | CI pipeline |
+| Folder               | Purpose              |
+| -------------------- | -------------------- |
+| `tests/`             | Test specs           |
+| `pages/`             | Page objects         |
+| `fixtures/`          | Custom test fixtures |
+| `.github/workflows/` | CI pipeline          |

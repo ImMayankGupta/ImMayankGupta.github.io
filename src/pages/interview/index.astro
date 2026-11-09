@@ -12,9 +12,7 @@ import config from "@/config";
 
 const entries = (
   await getCollection("interview", ({ data }) => !data.draft)
-).sort(
-  (a, b) => b.data.pubDatetime.getTime() - a.data.pubDatetime.getTime()
-);
+).sort((a, b) => b.data.pubDatetime.getTime() - a.data.pubDatetime.getTime());
 
 const locale = Astro.currentLocale ?? config.site.lang;
 const totalCount = entries.length;
@@ -56,15 +54,19 @@ const totalCount = entries.length;
                 All Interviews ({totalCount})
               </h2>
             </div>
-            <div class="grid gap-6 auto-rows-fr sm:grid-cols-2 lg:grid-cols-3">
+            <div class="grid auto-rows-fr gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {entries.map(e => (
                 <a
                   href={getRelativeLocaleUrl(locale, `interview/${e.id}`)}
-                  class="group border-accent bg-background flex h-56 flex-col rounded-lg border p-6 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-accent/20"
+                  class="group border-accent bg-background hover:shadow-accent/20 flex h-56 flex-col rounded-lg border p-6 transition-all hover:-translate-y-1 hover:shadow-xl"
                 >
                   <div class="flex flex-col items-center gap-4 text-center">
-                    <img src="/icon2.png" alt="interview icon" class="w-10 h-10 object-contain" />
-                    <h3 class="group-hover:text-accent text-lg font-bold leading-snug transition-colors">
+                    <img
+                      src="/icon2.png"
+                      alt="interview icon"
+                      class="h-10 w-10 object-contain"
+                    />
+                    <h3 class="group-hover:text-accent text-lg leading-snug font-bold transition-colors">
                       {e.data.title}
                     </h3>
                   </div>

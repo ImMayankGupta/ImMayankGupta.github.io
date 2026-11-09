@@ -1,0 +1,132 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Main from "@/components/Main.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Footer from "@/components/Footer.astro";
+import Datetime from "@/components/Datetime.astro";
+import {
+  getUniqueTags,
+  getEntriesByTag,
+  type MultiCollectionEntry,
+} from "@/utils/getMultiCollectionEntries";
+import config from "@/config";
+
+export const getStaticPaths = (async () => {
+  const tags = await getUniqueTags();
+
+  return Promise.all(
+    tags.map(async ({ tag, tagName }) => {
+      const entries = await getEntriesByTag(tag);
+      return {
+        params: { tag },
+        props: { tagName, entries },
+      };
+    })
+  );
+}) satisfies GetStaticPaths;
+
+type Props = {
+  tagName: string;
+  entries: MultiCollectionEntry[];
+};
+
+const { tagName, entries } = Astro.props;
+
+const locale = Astro.currentLocale ?? config.site.lang;
+
+const sectionLabels: Record<string, { label: string; badge: string }> = {
+  automation: {
+    label: "Automation",
+    badge: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
+  },
+  interview: {
+    label: "Interview",
+    badge:
+      "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+  },
+  resources: {
+    label: "Resources",
+    badge:
+      "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
+  },
+};
+---
+
+<Layout
+  title={`Tag: #${tagName} | ${config.site.title}`}
+  description={`All articles, frameworks, and guides tagged with #${tagName}.`}
+>
+  <Header />
+  <Breadcrumb />
+
+  <Main
+    pageTitle={`Tag: #${tagName}`}
+    pageDesc={`Showing ${entries.length} ${entries.length === 1 ? "guide" : "guides"} categorized under #${tagName}.`}
+  >
+    <div class="mb-6">
+      <a
+        href={getRelativeLocaleUrl(locale, "tags/")}
+        class="text-accent inline-flex items-center gap-1.5 text-sm font-medium hover:underline"
+      >
+        ← View all tags
+      </a>
+    </div>
+
+    <ul class="space-y-6">
+      {
+        entries.map(e => {
+          const sec = sectionLabels[e.section] ?? {
+            label: e.section,
+            badge: "bg-muted text-foreground border-border",
+          };
+          return (
+            <li class="border-border bg-background group hover:border-accent rounded-lg border p-6 transition-all hover:-translate-y-0.5 hover:shadow-md">
+              <div class="mb-2 flex flex-wrap items-center gap-3">
+                <span
+                  class:list={[
+                    "rounded border px-2 py-0.5 text-xs font-semibold tracking-wide uppercase",
+                    sec.badge,
+                  ]}
+                >
+                  {sec.label}
+                </span>
+                <Datetime
+                  pubDatetime={e.data.pubDatetime}
+                  modDatetime={e.data.updatedDatetime ?? null}
+                />
+              </div>
+
+              <h2 class="text-xl font-bold">
+                <a
+                  href={getRelativeLocaleUrl(locale, `${e.section}/${e.id}`)}
+                  class="group-hover:text-accent transition-colors"
+                >
+                  {e.data.title}
+                </a>
+              </h2>
+
+              <p class="text-foreground/80 mt-2 text-sm leading-relaxed">
+                {e.data.description}
+              </p>
+
+              {e.data.tags.length > 0 && (
+                <div class="mt-4 flex flex-wrap gap-2">
+                  {e.data.tags.map(t => (
+                    <span class="bg-muted/50 text-foreground/70 rounded px-2 py-0.5 text-xs">
+                      #{t}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </li>
+          );
+        })
+      }
+    </ul>
+  </Main>
+
+  <Footer />
+</Layout>

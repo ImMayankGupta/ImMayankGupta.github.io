@@ -58,12 +58,12 @@ BrowserContext is an isolated environment (like an incognito session) where cook
 ## 8. How do you launch a browser in Playwright?
 
 ```javascript
-const { chromium } = require('playwright');
+const { chromium } = require("playwright");
 
 (async () => {
   const browser = await chromium.launch();
   const page = await browser.newPage();
-  await page.goto('https://example.com');
+  await page.goto("https://example.com");
 })();
 ```
 
@@ -89,20 +89,20 @@ Locators are a central way to find and interact with elements. They are resilien
 Use `frameLocator`:
 
 ```javascript
-const frame = page.frameLocator('#frameId');
-await frame.locator('button').click();
+const frame = page.frameLocator("#frameId");
+await frame.locator("button").click();
 ```
 
 ## 13. How do you take screenshots in Playwright?
 
 ```javascript
-await page.screenshot({ path: 'screenshot.png' });
+await page.screenshot({ path: "screenshot.png" });
 ```
 
 ## 14. How do you handle file uploads?
 
 ```javascript
-await page.setInputFiles('input[type="file"]', 'file.pdf');
+await page.setInputFiles('input[type="file"]', "file.pdf");
 ```
 
 ## 15. What is headless mode?
@@ -114,7 +114,7 @@ Headless mode runs the browser without a UI, making tests faster and suitable fo
 Playwright Test runs tests in parallel by default. You can configure workers:
 
 ```javascript
-workers: 4
+workers: 4;
 ```
 
 ## 17. How do you handle API testing in Playwright?
@@ -122,7 +122,7 @@ workers: 4
 Playwright provides `APIRequestContext`:
 
 ```javascript
-const response = await request.get('/api/users');
+const response = await request.get("/api/users");
 ```
 
 ## 18. What is network interception?
@@ -130,7 +130,7 @@ const response = await request.get('/api/users');
 It allows you to monitor or modify network requests:
 
 ```javascript
-await page.route('**/api/**', route => route.continue());
+await page.route("**/api/**", route => route.continue());
 ```
 
 ## 19. How do you debug tests in Playwright?

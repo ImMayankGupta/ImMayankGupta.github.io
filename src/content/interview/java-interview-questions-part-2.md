@@ -87,12 +87,12 @@ A mechanism for organizing related classes and interfaces:
 
 Wrap primitive data types and provide additional methods:
 
-| Primitive | Wrapper |
-| --- | --- |
-| `int` | `Integer` |
-| `boolean` | `Boolean` |
-| `char` | `Character` |
-| `double` | `Double` |
+| Primitive | Wrapper     |
+| --------- | ----------- |
+| `int`     | `Integer`   |
+| `boolean` | `Boolean`   |
+| `char`    | `Character` |
+| `double`  | `Double`    |
 
 ## `equals()` method
 

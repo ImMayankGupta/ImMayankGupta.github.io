@@ -19,17 +19,17 @@ featured: true
 
 The `.feature` file language:
 
-| Keyword | Purpose | Example |
-| --- | --- | --- |
-| `Feature:` | Describes the feature being tested | `Feature: Posts API` |
-| `Scenario:` | A single test case | `Scenario: Get all posts` |
-| `Given` | Precondition / setup | `Given the API client is initialized` |
-| `When` | Action / trigger | `When I send a GET request to "/posts"` |
-| `Then` | Expected outcome / assertion | `Then the response status code should be 200` |
-| `And` / `But` | Continuation of the previous keyword | `And the response should have field "id"` |
-| `Background:` | Steps shared by ALL scenarios in a feature | Runs before every scenario |
-| `Scenario Outline:` | Data-driven test template | Uses `Examples:` table for parameterization |
-| `@tag` | Tags for filtering/organizing | `@smoke`, `@api`, `@negative` |
+| Keyword             | Purpose                                    | Example                                       |
+| ------------------- | ------------------------------------------ | --------------------------------------------- |
+| `Feature:`          | Describes the feature being tested         | `Feature: Posts API`                          |
+| `Scenario:`         | A single test case                         | `Scenario: Get all posts`                     |
+| `Given`             | Precondition / setup                       | `Given the API client is initialized`         |
+| `When`              | Action / trigger                           | `When I send a GET request to "/posts"`       |
+| `Then`              | Expected outcome / assertion               | `Then the response status code should be 200` |
+| `And` / `But`       | Continuation of the previous keyword       | `And the response should have field "id"`     |
+| `Background:`       | Steps shared by ALL scenarios in a feature | Runs before every scenario                    |
+| `Scenario Outline:` | Data-driven test template                  | Uses `Examples:` table for parameterization   |
+| `@tag`              | Tags for filtering/organizing              | `@smoke`, `@api`, `@negative`                 |
 
 ## Behave Architecture & Project Structure
 
@@ -57,12 +57,12 @@ project/
 
 **Key files to study:**
 
-| File | What to learn |
-| --- | --- |
-| `behave.ini` | Configuration: format, paths, junit output, tags |
-| `environment.py` | Hooks: `before_scenario`, `after_scenario`, etc. |
-| `api_steps.py` | Step definitions with `@given`, `@when`, `@then` decorators |
-| `base_service.py` | Service layer pattern (separating HTTP logic from steps) |
+| File              | What to learn                                               |
+| ----------------- | ----------------------------------------------------------- |
+| `behave.ini`      | Configuration: format, paths, junit output, tags            |
+| `environment.py`  | Hooks: `before_scenario`, `after_scenario`, etc.            |
+| `api_steps.py`    | Step definitions with `@given`, `@when`, `@then` decorators |
+| `base_service.py` | Service layer pattern (separating HTTP logic from steps)    |
 
 ## Step Definitions Deep Dive
 
@@ -282,16 +282,16 @@ When I send a POST request to "/posts" with data:
 
 ## Best Practices Checklist
 
-| Practice | Description |
-| --- | --- |
-| **Declarative steps** | `When I create a post` not `When I click submit button` |
-| **Reusable steps** | Generic steps with parameters over specific ones |
-| **Service layer** | Separate HTTP logic from step definitions |
-| **Context as glue** | Pass data between steps via `context`, never globals |
-| **One assertion concept per scenario** | Each scenario tests one behavior |
-| **Tags for organization** | `@smoke`, `@regression`, `@negative`, `@wip` |
-| **Background for shared setup** | Don't repeat `Given` steps across scenarios |
-| **Thin steps** | Steps call service methods; logic lives in services |
+| Practice                               | Description                                             |
+| -------------------------------------- | ------------------------------------------------------- |
+| **Declarative steps**                  | `When I create a post` not `When I click submit button` |
+| **Reusable steps**                     | Generic steps with parameters over specific ones        |
+| **Service layer**                      | Separate HTTP logic from step definitions               |
+| **Context as glue**                    | Pass data between steps via `context`, never globals    |
+| **One assertion concept per scenario** | Each scenario tests one behavior                        |
+| **Tags for organization**              | `@smoke`, `@regression`, `@negative`, `@wip`            |
+| **Background for shared setup**        | Don't repeat `Given` steps across scenarios             |
+| **Thin steps**                         | Steps call service methods; logic lives in services     |
 
 ## Quick Reference Card
 

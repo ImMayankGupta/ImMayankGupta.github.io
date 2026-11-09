@@ -30,31 +30,33 @@ npm install selenium-webdriver chromedriver
 Import required libraries:
 
 ```javascript
-const { Builder, By, Key, until } = require('selenium-webdriver');
+const { Builder, By, Key, until } = require("selenium-webdriver");
 ```
 
 Create a function for blockchain automation:
 
 ```javascript
 async function automateBlockchainActivity() {
-  const driver = new Builder().forBrowser('chrome').build();
+  const driver = new Builder().forBrowser("chrome").build();
 
   try {
     // Open the blockchain UI
-    await driver.get('https://blockchain-url.com');
+    await driver.get("https://blockchain-url.com");
 
     // Perform UI interactions (e.g., clicks, input data)
-    const button = await driver.findElement(By.id('buttonId'));
+    const button = await driver.findElement(By.id("buttonId"));
     await button.click();
 
     // Wait for blockchain transaction confirmation or response
-    await driver.wait(until.elementLocated(By.id('responseElement')), 15000);
+    await driver.wait(until.elementLocated(By.id("responseElement")), 15000);
 
     // Extract and log the response
-    const response = await driver.findElement(By.id('responseElement')).getText();
-    console.log('Blockchain Response:', response);
+    const response = await driver
+      .findElement(By.id("responseElement"))
+      .getText();
+    console.log("Blockchain Response:", response);
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   } finally {
     await driver.quit();
   }

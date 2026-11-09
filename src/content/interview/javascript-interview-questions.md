@@ -85,7 +85,7 @@ Use `try-catch` blocks:
 try {
   riskyOperation();
 } catch (err) {
-  console.error('Something went wrong:', err);
+  console.error("Something went wrong:", err);
 }
 ```
 
@@ -107,7 +107,7 @@ const add = (a, b) => a + b;
 A way to handle asynchronous operations. They represent the eventual completion or failure of an async operation and allow you to chain actions.
 
 ```javascript
-fetch('/api/data')
+fetch("/api/data")
   .then(res => res.json())
   .then(data => console.log(data))
   .catch(err => console.error(err));
@@ -130,7 +130,7 @@ Handled using **CORS** (Cross-Origin Resource Sharing) or **JSONP** (for GET req
 Delays the execution of a function or code by a specified time interval (in milliseconds).
 
 ```javascript
-setTimeout(() => console.log('Hi!'), 1000);
+setTimeout(() => console.log("Hi!"), 1000);
 ```
 
 ## 19. What is event bubbling?

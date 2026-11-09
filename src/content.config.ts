@@ -19,7 +19,7 @@ const sectionSchema = z.object({
   pubDatetime: z.date(),
   updatedDatetime: z.date().optional(),
   tags: z.array(z.string()).default([]),
-  externalUrl: z.string().url().optional(),
+  externalUrl: z.url().optional(),
   featured: z.boolean().optional(),
   draft: z.boolean().optional(),
 });

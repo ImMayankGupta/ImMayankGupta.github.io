@@ -4,17 +4,14 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-// import Socials from "@/components/Socials.astro"; // To be added later
+import Socials from "@/components/Socials.astro";
 import SectionCard from "@/components/SectionCard.astro";
 import SectionCarousel from "@/components/SectionCarousel.astro";
-import { useTranslations } from "@/i18n";
 import config from "@/config";
 
-// const { socials } = config; // To be added later
+const { socials } = config;
 
 const locale = Astro.currentLocale ?? config.site.lang;
-const t = useTranslations(locale);
-
 const homePath = getRelativeLocaleUrl(locale, "");
 
 const [automation, resources, interview] = await Promise.all([
@@ -70,7 +67,7 @@ const sections = [
       id="hero"
       class="border-border relative flex min-h-[80vh] flex-col justify-center gap-8 border-b pt-8 pb-16 lg:flex-row lg:items-center lg:gap-12"
     >
-      <div class="flex flex-col flex-1 lg:max-w-2xl">
+      <div class="flex flex-1 flex-col lg:max-w-2xl">
         <p class="text-accent mb-3 text-lg font-medium">Hi, My Name is</p>
         <h1
           class="mb-2 text-5xl leading-tight font-bold tracking-tight sm:text-7xl"
@@ -83,7 +80,9 @@ const sections = [
           I build <span class="text-accent">TestWithAI</span>.
         </h2>
         <p class="text-foreground/80 text-lg leading-relaxed">
-          QA Automation Architect turning quality engineering into scalable frameworks, AI-powered solutions, developer resources, and interview-ready knowledge — through   
+          QA Automation Architect turning quality engineering into scalable
+          frameworks, AI-powered solutions, developer resources, and
+          interview-ready knowledge — through
           <a
             href="https://github.com/TestWithAI"
             class="text-accent underline decoration-dashed underline-offset-4 hover:no-underline"
@@ -91,7 +90,8 @@ const sections = [
           > organization.
         </p>
 
-        {/* Social Links - To be added later
+        {
+          /* Social Links - To be added later
           socials.length > 0 && (
             <div class="mt-8 flex max-sm:flex-col sm:items-center">
               <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
@@ -100,7 +100,8 @@ const sections = [
               <Socials />
             </div>
           )
-        */}
+        */
+        }
 
         <div class="mt-10 flex flex-wrap gap-3">
           <a
@@ -119,11 +120,11 @@ const sections = [
       </div>
 
       <!-- Hero Image -->
-      <div class="flex-1 flex items-center justify-center lg:justify-end">
+      <div class="flex flex-1 items-center justify-center lg:justify-end">
         <img
           src="/mayank-logo.png"
           alt="Mayank - SDET & Automation Engineer"
-          class="w-full max-w-sm object-cover float-animation"
+          class="float-animation w-full max-w-sm object-cover"
           loading="lazy"
         />
       </div>
@@ -152,7 +153,7 @@ const sections = [
     <!-- ============ WHO AM I ============ -->
     <section id="whoami" class="border-border border-b py-16">
       <h2
-        class="mb-8 inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:bg-accent after:content-['']"
+        class="after:bg-accent mb-8 inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:content-['']"
       >
         Who am I?
       </h2>
@@ -168,28 +169,23 @@ const sections = [
           />
         </div>
         <div class="space-y-4">
-          <div
-            class="text-foreground/85 space-y-4 text-base leading-relaxed"
-          >
+          <div class="text-foreground/85 space-y-4 text-base leading-relaxed">
             <p>
-              I'm <strong>Mayank</strong> — a Software Development Engineer in
-              Test (SDET) passionate about building automation frameworks,
-              open-source developer tools, and sharing knowledge with the QA
-              community.
+              I'm <strong>Mayank</strong> — a Software Development Engineer in Test
+              (SDET) passionate about building automation frameworks, open-source
+              developer tools, and sharing knowledge with the QA community.
             </p>
             <p>
-              Through <strong>TestWithAI</strong>, I curate and publish battle-tested
-              automation frameworks, free developer resources, and interview prep
-              content designed to help engineers grow faster.
+              Through <strong>TestWithAI</strong>, I curate and publish
+              battle-tested automation frameworks, free developer resources, and
+              interview prep content designed to help engineers grow faster.
             </p>
             <p>
               When I'm not writing tests, I'm writing about how to write better
               tests. Explore the sections below to see what I've built.
             </p>
           </div>
-          <div
-            class="border-border bg-muted/30 mt-6 rounded-lg border p-6"
-          >
+          <div class="border-border bg-muted/30 mt-6 rounded-lg border p-6">
             <div class="mb-3 text-sm font-semibold tracking-wide uppercase">
               Skills
             </div>
@@ -208,18 +204,16 @@ const sections = [
     <!-- ============ WHAT I DO / 3 SECTIONS ============ -->
     <section id="sections" class="border-border border-b py-16">
       <h2
-        class="mb-2 inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:bg-accent after:content-['']"
+        class="after:bg-accent mb-2 inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:content-['']"
       >
         What I Do
       </h2>
       <p class="text-foreground/70 mt-4 mb-8">
         Three focused pillars under the TestWithAI umbrella.
       </p>
-      {/* Section Cards - To be added later
       <div class="grid gap-6 md:grid-cols-3">
         {sections.map(s => <SectionCard {...s} />)}
       </div>
-      */}
     </section>
 
     <!-- ============ LATEST AUTOMATION ============ -->
@@ -227,7 +221,7 @@ const sections = [
       automationEntries.length > 0 && (
         <section id="latest-automation" class="border-border border-b py-16">
           <div class="mb-6 flex flex-wrap items-baseline justify-between gap-3">
-            <h2 class="inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:bg-accent after:content-['']">
+            <h2 class="after:bg-accent inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:content-['']">
               🤖 Latest QA Automation Frameworks
             </h2>
             <a
@@ -247,7 +241,7 @@ const sections = [
       interviewEntries.length > 0 && (
         <section id="latest-interview" class="border-border border-b py-16">
           <div class="mb-6 flex flex-wrap items-baseline justify-between gap-3">
-            <h2 class="inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:bg-accent after:content-['']">
+            <h2 class="after:bg-accent inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:content-['']">
               💡 Latest Interview Questions
             </h2>
             <a
@@ -257,7 +251,11 @@ const sections = [
               View all {interviewEntries.length} →
             </a>
           </div>
-          <SectionCarousel entries={interviewEntries} section="interview" />
+          <SectionCarousel
+            entries={interviewEntries}
+            section="interview"
+            featuredCount={3}
+          />
         </section>
       )
     }
@@ -267,7 +265,7 @@ const sections = [
       resourcesEntries.length > 0 && (
         <section id="latest-resources" class="border-border border-b py-16">
           <div class="mb-6 flex flex-wrap items-baseline justify-between gap-3">
-            <h2 class="inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:bg-accent after:content-['']">
+            <h2 class="after:bg-accent inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:content-['']">
               📚 Latest Open Source Resources
             </h2>
             <a
@@ -285,17 +283,17 @@ const sections = [
     <!-- ============ CONTACT ============ -->
     <section id="contact" class="py-16">
       <h2
-        class="mb-2 inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:bg-accent after:content-['']"
+        class="after:bg-accent mb-2 inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:content-['']"
       >
         Let's connect
       </h2>
-      <p class="text-foreground/80 mt-4 mb-6 max-w-2xl text-base leading-relaxed">
+      <p
+        class="text-foreground/80 mt-4 mb-6 max-w-2xl text-base leading-relaxed"
+      >
         Have an idea, opportunity, or want to collaborate on an open-source
         testing project? I'd love to hear from you.
       </p>
-      {/* Social Icons - To be added later
       {socials.length > 0 && <Socials />}
-      */}
     </section>
   </main>
   <Footer />

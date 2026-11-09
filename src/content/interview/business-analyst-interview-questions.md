@@ -2,7 +2,14 @@
 title: "Top 20 Business Analyst Interview Questions with Answers"
 description: "BA interview questions: requirements gathering, use cases, SWOT, gap analysis, BRD, UAT, Agile vs Waterfall, stakeholder management, and scope creep."
 pubDatetime: 2023-07-14T00:00:00Z
-tags: ["business-analyst", "requirements", "interview", "agile", "stakeholder-management"]
+tags:
+  [
+    "business-analyst",
+    "requirements",
+    "interview",
+    "agile",
+    "stakeholder-management",
+  ]
 externalUrl: "https://qamayankgupta.medium.com/top-20-business-analyst-interview-questions-with-answer-730d5f7e6f54"
 ---
 

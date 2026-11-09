@@ -13,11 +13,17 @@ const backUrl = Astro.url.pathname;
 <main
   data-backUrl={backUrl}
   id="main-content"
-  class:list={["app-layout pb-16 pt-8", className]}
+  class:list={["app-layout pt-8 pb-16", className]}
 >
   <div class="mb-8">
-    <h1 class="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">{pageTitle}</h1>
-    {pageDesc && <p class="text-lg text-foreground/80 leading-relaxed">{pageDesc}</p>}
+    <h1 class="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
+      {pageTitle}
+    </h1>
+    {
+      pageDesc && (
+        <p class="text-foreground/80 text-lg leading-relaxed">{pageDesc}</p>
+      )
+    }
   </div>
   <slot />
 </main>

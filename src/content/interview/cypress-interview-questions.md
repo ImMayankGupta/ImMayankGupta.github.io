@@ -40,7 +40,7 @@ Cypress **automatically waits** for commands and assertions. For special cases:
 
 ```javascript
 cy.wait(2000); // explicit
-cy.get('.item').should('be.visible'); // chained assertions retry
+cy.get(".item").should("be.visible"); // chained assertions retry
 ```
 
 ## 6. What is a fixture in Cypress?
@@ -48,8 +48,8 @@ cy.get('.item').should('be.visible'); // chained assertions retry
 A way to load external data into your tests. You can define data in JSON/CSV files under `cypress/fixtures/` and use them via `cy.fixture()`.
 
 ```javascript
-cy.fixture('users.json').then(users => {
-  cy.get('#username').type(users.admin.name);
+cy.fixture("users.json").then(users => {
+  cy.get("#username").type(users.admin.name);
 });
 ```
 
@@ -62,10 +62,11 @@ Create separate config files like `cypress.dev.json` or `cypress.prod.json` and 
 Use `cy.request()`:
 
 ```javascript
-cy.request('POST', '/api/login', { user: 'foo', pass: 'bar' })
-  .then(response => {
+cy.request("POST", "/api/login", { user: "foo", pass: "bar" }).then(
+  response => {
     expect(response.status).to.eq(200);
-  });
+  }
+);
 ```
 
 ## 9. How do you handle authentication?
@@ -79,8 +80,8 @@ cy.request('POST', '/api/login', { user: 'foo', pass: 'bar' })
 Use `cy.on()` to intercept browser events:
 
 ```javascript
-cy.on('window:alert', txt => {
-  expect(txt).to.contains('Success');
+cy.on("window:alert", txt => {
+  expect(txt).to.contains("Success");
 });
 ```
 
@@ -97,10 +98,10 @@ npx cypress run --headless --browser chrome
 Reusable commands defined in `cypress/support/commands.js` that can be used across tests:
 
 ```javascript
-Cypress.Commands.add('login', (user, pass) => {
-  cy.get('#username').type(user);
-  cy.get('#password').type(pass);
-  cy.get('#submit').click();
+Cypress.Commands.add("login", (user, pass) => {
+  cy.get("#username").type(user);
+  cy.get("#password").type(pass);
+  cy.get("#submit").click();
 });
 ```
 
@@ -125,7 +126,7 @@ retries: {
 Use `cy.fixture()` and `attachFile` (from `cypress-file-upload` plugin):
 
 ```javascript
-cy.get('input[type=file]').attachFile('sample.pdf');
+cy.get("input[type=file]").attachFile("sample.pdf");
 ```
 
 ## 16. How do you configure Cypress with TypeScript?

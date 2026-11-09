@@ -54,6 +54,12 @@ const socialImageURL = new URL(getAssetPath(ogImage), Astro.site ?? Astro.url);
     <meta name="description" content={description} />
     <meta name="author" content={site.author} />
     <link rel="sitemap" href={getAssetPath("sitemap-index.xml")} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={site.title}
+      href={new URL("rss.xml", Astro.site).href}
+    />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -107,11 +113,12 @@ const socialImageURL = new URL(getAssetPath(ogImage), Astro.site ?? Astro.url);
     <ClientRouter />
   </head>
   <body
-    class="bg-background font-sans text-foreground selection:bg-accent/75 selection:text-accent-foreground flex min-h-svh flex-col"
+    class="bg-background text-foreground selection:bg-accent/75 selection:text-accent-foreground flex min-h-svh flex-col font-sans"
   >
     <slot />
     <script>
       import "@/scripts/theme";
+      import "@/scripts/copy-code";
     </script>
   </body>
 </html>

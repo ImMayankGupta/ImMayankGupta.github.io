@@ -60,12 +60,12 @@ class Dog:
 
 ## 6. Differentiate between lists and tuples in Python.
 
-| Feature | List | Tuple |
-| --- | --- | --- |
-| Mutability | Mutable | Immutable |
-| Syntax | `[1, 2, 3]` | `(1, 2, 3)` |
-| Performance | Slower | Faster |
-| Use case | Collection that may change | Fixed collection |
+| Feature     | List                       | Tuple            |
+| ----------- | -------------------------- | ---------------- |
+| Mutability  | Mutable                    | Immutable        |
+| Syntax      | `[1, 2, 3]`                | `(1, 2, 3)`      |
+| Performance | Slower                     | Faster           |
+| Use case    | Collection that may change | Fixed collection |
 
 ## 7. Explain the concept of list comprehensions in Python.
 
