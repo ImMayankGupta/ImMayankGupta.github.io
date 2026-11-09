@@ -21,6 +21,7 @@ export default defineAstroPaperConfig({
     { name: "github", url: "https://github.com/ImMayankGupta" },
     { name: "linkedin", url: "https://www.linkedin.com/in/immayankgupta/" },
     { name: "x", url: "https://x.com/ImMayankGupta" },
-    { name: "mail", url: "mailto:hello@immayank.dev" },
+    { name: "mail", url: "mailto:mayankgupta654@gmail.com" },
+    { name: "whatsapp", url: "https://wa.me/919716953459" },
   ],
 });

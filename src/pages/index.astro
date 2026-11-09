@@ -4,12 +4,93 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
 import SectionCard from "@/components/SectionCard.astro";
 import SectionCarousel from "@/components/SectionCarousel.astro";
 import config from "@/config";
+import IconMail from "@/assets/icons/socials/mail.svg";
+import IconWhatsapp from "@/assets/icons/socials/whatsapp.svg";
 
 const { socials } = config;
+
+// --- Contact Details (from config, never hardcoded) ---
+const mailSocial = socials.find(s => s.name === "mail");
+const emailAddress =
+  mailSocial?.url?.replace("mailto:", "") ?? "mayankgupta654@gmail.com";
+const emailSubject = encodeURIComponent("QA Automation Project Enquiry");
+const emailBody = encodeURIComponent(
+  "Hi Mayank,\n\nI'd like to discuss my QA Automation requirements with you.\n\nProject / Challenge:\n\nWhat I need help with:\n\nTimeline / Budget:\n\nLooking forward to connecting!\n"
+);
+const emailHref = `mailto:${emailAddress}?subject=${emailSubject}&body=${emailBody}`;
+
+const whatsappSocial = socials.find(s => s.name === "whatsapp");
+const whatsappText = encodeURIComponent(
+  "Hi Mayank! I found your portfolio and I'd love to discuss my QA Automation requirements with you."
+);
+const whatsappHref =
+  whatsappSocial?.url ?? `https://wa.me/?text=${whatsappText}`;
+
+// --- Freelance Services ---
+const qaServices = [
+  {
+    icon: "🏗️",
+    title: "Automation Framework Development",
+    desc: "Building scalable, maintainable, and reusable automation frameworks from scratch tailored to your stack.",
+  },
+  {
+    icon: "🌐",
+    title: "Web Application Automation",
+    desc: "Automating functional and regression testing for web applications using Playwright, Selenium, and more.",
+  },
+  {
+    icon: "🔗",
+    title: "API Automation Testing",
+    desc: "Creating and maintaining robust automated API test suites with RestAssured, Postman, or similar tools.",
+  },
+  {
+    icon: "📱",
+    title: "Mobile Application Testing",
+    desc: "Supporting mobile application automation and testing activities for Android and iOS platforms.",
+  },
+  {
+    icon: "⚙️",
+    title: "Framework Enhancement",
+    desc: "Improving existing automation frameworks — better code quality, faster execution, and reduced flakiness.",
+  },
+  {
+    icon: "📝",
+    title: "Automation Script Development",
+    desc: "Developing reusable, well-structured automation scripts based on your project requirements.",
+  },
+  {
+    icon: "🐛",
+    title: "Debugging & Troubleshooting",
+    desc: "Identifying and resolving automation failures, flaky tests, and execution issues quickly.",
+  },
+  {
+    icon: "🚀",
+    title: "CI/CD Integration",
+    desc: "Helping integrate automated test execution into CI/CD pipelines using GitHub Actions, Jenkins, and more.",
+  },
+  {
+    icon: "💡",
+    title: "QA Automation Consultation",
+    desc: "Providing technical guidance, framework recommendations, and automation strategy tailored to your goals.",
+  },
+  {
+    icon: "🤝",
+    title: "Freelance Project Support",
+    desc: "Taking up short-term or long-term QA Automation assignments based on your project needs and timeline.",
+  },
+];
+
+const availabilityHighlights = [
+  "Freelance QA Automation projects",
+  "Remote QA Automation opportunities",
+  "Short-term and long-term assignments",
+  "Hourly or project-based engagement",
+  "Technical consultation and troubleshooting",
+  "Collaboration with developers, QA engineers, startups, and organizations",
+];
 
 const locale = Astro.currentLocale ?? config.site.lang;
 const homePath = getRelativeLocaleUrl(locale, "");
@@ -282,18 +363,136 @@ const sections = [
 
     <!-- ============ CONTACT ============ -->
     <section id="contact" class="py-16">
-      <h2
-        class="after:bg-accent mb-2 inline-block text-3xl font-bold tracking-wide after:mt-2 after:block after:h-1 after:w-16 after:rounded after:content-['']"
-      >
-        Let's connect
-      </h2>
-      <p
-        class="text-foreground/80 mt-4 mb-6 max-w-2xl text-base leading-relaxed"
-      >
-        Have an idea, opportunity, or want to collaborate on an open-source
-        testing project? I'd love to hear from you.
-      </p>
-      {socials.length > 0 && <Socials />}
+      <div class="mx-auto max-w-4xl text-center">
+        <!-- Availability badge -->
+        <div class="mb-6 flex justify-center">
+          <span
+            class="inline-flex items-center gap-2 rounded-full border border-green-500/40 bg-green-500/10 px-4 py-1.5 text-sm font-medium text-green-400"
+          >
+            <span class="relative flex h-2.5 w-2.5">
+              <span
+                class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"
+              ></span>
+              <span
+                class="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500"
+              ></span>
+            </span>
+            Available for Freelance QA Automation Projects and Support Work
+          </span>
+        </div>
+
+        <!-- Headline & Description -->
+        <h2
+          class="after:bg-accent mb-4 text-3xl font-bold tracking-wide after:mx-auto after:mt-3 after:block after:h-1 after:w-16 after:rounded after:content-['']"
+        >
+          Need Help with QA Automation? Let's Work Together!
+        </h2>
+
+        <p class="text-foreground/80 mt-6 mb-3 text-base leading-relaxed">
+          Looking for support with your QA Automation challenges or need an
+          experienced QA Automation professional for your project? <strong
+            class="text-foreground">I'm available to help!</strong
+          >
+        </p>
+        <p class="text-foreground/70 mb-3 text-sm leading-relaxed">
+          Whether you're starting automation from scratch, improving an existing
+          automation framework, resolving automation issues, or looking for
+          end-to-end testing support, I'd be happy to connect and explore how I
+          can help.
+        </p>
+        <p class="text-foreground/70 mb-10 text-sm leading-relaxed">
+          I provide <strong class="text-foreground"
+            >flexible QA Automation support</strong
+          > for individuals, startups, development teams, and organizations on a freelance,
+          consulting, or project-based basis.
+        </p>
+
+        <!-- Primary CTAs -->
+        <div class="mb-14 flex flex-wrap justify-center gap-4">
+          <a
+            href={emailHref}
+            class="bg-accent text-background hover:bg-accent/90 inline-flex items-center gap-2.5 rounded-lg px-6 py-3 text-sm font-semibold shadow transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+          >
+            <IconMail class="h-4 w-4" aria-hidden="true" />
+            Discuss Your Project via Email
+          </a>
+          <a
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2.5 rounded-lg bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#1ebe5d] hover:shadow-lg"
+          >
+            <IconWhatsapp class="h-4 w-4" aria-hidden="true" />
+            Connect on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- How I Can Help You – Services Grid -->
+      <div class="mb-12">
+        <h3
+          class="text-foreground mb-6 text-center text-xl font-bold tracking-wide"
+        >
+          🛠️ How I Can Help You
+        </h3>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            qaServices.map(service => (
+              <div class="border-accent bg-background group rounded-xl border p-5 text-left transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
+                <div class="mb-3 text-2xl">{service.icon}</div>
+                <h4 class="text-foreground mb-1.5 text-sm font-semibold">
+                  {service.title}
+                </h4>
+                <p class="text-foreground/60 text-xs leading-relaxed">
+                  {service.desc}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Two-column: Not Sure + Availability -->
+      <div class="mb-10 grid gap-6 md:grid-cols-2">
+        <!-- Not sure where to start -->
+        <div
+          class="border-accent bg-background rounded-xl border p-6 text-left"
+        >
+          <h3 class="text-foreground mb-3 text-base font-bold">
+            🤔 Not sure where to start?
+          </h3>
+          <p class="text-foreground/70 mb-3 text-sm leading-relaxed">
+            That's absolutely fine! Share your QA Automation problem, project
+            requirements, or testing challenges with me. Whether you need help
+            fixing an existing framework, building automation from scratch,
+            improving test coverage, or simply need expert guidance — let's
+            discuss it.
+          </p>
+          <p class="text-foreground/60 text-sm italic">
+            I'm always happy to explore opportunities to collaborate and help
+            you achieve your QA goals.
+          </p>
+        </div>
+
+        <!-- Availability highlights -->
+        <div
+          class="border-accent bg-background rounded-xl border p-6 text-left"
+        >
+          <h3 class="text-foreground mb-3 text-base font-bold">
+            📋 Freelance Availability
+          </h3>
+          <ul class="space-y-2">
+            {
+              availabilityHighlights.map(item => (
+                <li class="text-foreground/70 flex items-start gap-2 text-sm">
+                  <span class="text-accent mt-0.5 shrink-0">✓</span>
+                  {item}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
     </section>
   </main>
   <Footer />
